@@ -1,0 +1,96 @@
+1-It’s time to run the file! Run the command node runtime.js in the same directory as where the file lives.
+
+
+2-In your notes document, take note of the timing result for the extraLargeArray results– comparing when the extraLargeArray is passed to doublerAppend and doublerInsert.
+
+
+//The unshift() method adds one or more elements to the beginning of an array and returns the new length of the array.
+// const array1 = [1, 2, 3];
+
+// console.log(array1.unshift(4, 5));
+// // expected output: 5
+
+// console.log(array1);
+// // expected output: Array [4, 5, 1, 2, 3]
+
+
+// Try it with first function
+perf.start();                     // Starts timer
+doublerAppend(extraLargeArray);
+let resultsAppend = perf.stop();  // Stops timer and save time results
+
+// Try it with second function
+perf.start();
+doublerInsert(extraLargeArray);
+let resultsInsert = perf.stop();
+
+console.log('Results for the extraLargeArray');
+console.log("insert", resultsInsert.preciseWords);
+console.log("append", resultsAppend.preciseWords);
+
+
+
+
+
+//3- Next, edit the code in runtime.js to obtain timing results for calling the two functions with all of the differently sized arrays– tinyArray, smallArray, mediumArray, largeArray, and extraLargeArray. Notate these in your document in some kind table table so that you can easily compare the different values for the timers in relation to the size of the array that was passed into each function.
+
+ (Insert vs Append)
+// With extraLargeArray--->   insert 828.9326 ms,   append 3.2855 ms
+// With largeArray     --->   insert 8.0395 ms,   append 520 μs
+// With mediumArray    --->   insert 155.8 μs,   append 130.3 μs
+// With smallArray     --->   insert 59.2 μs,   append 115.5 μs
+// With tinyArray      --->   insert 37 μs,   append 86.8 μs
+
+it took longer --->828.9326 ms vs 37 μs
+
+
+
+
+
+//4-Read over the results, and write a paragraph that explains the pattern you see. 
+//How does each function “scale”? Which of the two functions scales better? 
+//How can you tell?
+
+Clearly, we can check the array length and choose whic function we should use. It shows the append is faster than the insert with array larger than 1000. With small array we can choose insert, it is faster than append. 
+
+
+
+
+
+
+//5-For extra credit, do some review / research on why the slower function is so slow, and summarize the reasoning for this.
+
+ unshift() method adds one or more elements to the beginning of an array and returns the new length of the array.
+
+const array1 = [1, 2, 3];
+
+console.log(array1.unshift(4, 5));
+expected output: 5
+
+console.log(array1);
+expected output: Array [4, 5, 1, 2, 3]
+
+
+--->.unshift()=all the operation is doing added the new element,it will add the element to index zero of the list
+
+
+
+
+The push() method adds one or more elements to the end of an array and returns the new length of the array.
+
+const animals = ['pigs', 'goats', 'sheep'];
+
+const count = animals.push('cows');
+console.log(count);
+// expected output: 4
+console.log(animals);
+// expected output: Array ["pigs", "goats", "sheep", "cows"]
+
+animals.push('chickens', 'cats', 'dogs');
+console.log(animals);
+// expected output: Array ["pigs", "goats", "sheep", "cows", "chickens", "cats", "dogs"]
+
+
+--->.push()=all the operation is doing added the new element to the end of the an array.
+
+
